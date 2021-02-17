@@ -29,6 +29,7 @@ function makeBoard() {
 
 }
 
+
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
@@ -69,6 +70,15 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  // This function should add a div inside the correct td cell in the HTML game board. 
+  // This div should have the piece class on it, and should have a class for whether 
+  // the current player is 1 or 2, like p1 or p2.
+  let piece = document.createElement('div');
+  piece.classList.add('piece');
+  piece.classList.add(`p${currPlayer}`);
+
+  let cellTd = document.getElementById(`${y}-${x}`);
+  cellTd.append(piece);
 }
 
 /** endGame: announce game end */
