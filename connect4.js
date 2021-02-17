@@ -159,12 +159,15 @@ function checkForWin() {
   // TODO: read and understand this code. Add comments to help you.
 
   for (let y = 0; y < HEIGHT; y++) {
-    for (let x = 0; x < WIDTH; x++) {
-      const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
+    for (let x = 0; x < WIDTH; x++) { //checks every cell on the board
+      const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];  //creates 4 vectors of length 4 in each direction
       const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
       const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
-      const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
+      const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]]; 
+      //imperfect algorithm b/c part of the time the vectors go out of bounds
+      //however its ok b/c this does not break the _win function
 
+      //tests each vector with the _win function
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
       }
