@@ -66,15 +66,16 @@ function findSpotForCol(x) {
   // Right now, the game drops always drops a piece to the top of the column, even 
   // if a piece is already there. Fix this function so that it finds the lowest empty 
   // spot in the game board and returns the y coordinate (or null if the column is filled).
+  
   // count empty spaces
   let count = 0;
   for(let i=0;i<HEIGHT;i++){
     if(board[i][x]) count++;
   }
   // if count === 6 return null
-  if(count===6) return null;
+  if(count===HEIGHT) return null;
   // else return count
-  else return count;
+  return count;
 
 }
 
