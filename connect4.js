@@ -90,9 +90,12 @@ function endGame(msg) {
 /** handleClick: handle click of column top to play piece */
 
 function handleClick(evt) {
+  // this never updates the board variable with the player #. Fix.
+  // add a check for “is the entire board filled” [hint: the JS every method on arrays would be especially nice here!]
+  // add code to switch currPlayer between 1 and 2. This would be a great place for a ternary function.
+
   // get x from ID of clicked cell
   const x = +evt.target.id;
-
   // get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
   if (y === null) {
@@ -100,9 +103,9 @@ function handleClick(evt) {
   }
 
   // place piece in board and add to HTML table
-  // TODO: add line to update in-memory board
   placeInTable(y, x);
-
+  // TODO: add line to update in-memory board
+  board[y][x] = currPlayer;
   // check for win
   if (checkForWin()) {
     return endGame(`Player ${currPlayer} won!`);
@@ -110,9 +113,12 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-
+  if (board.every(row=>row.every(cell=>cell))) {
+    return endGame('Tie Game!');
+  }
   // switch players
   // TODO: switch currPlayer 1 <-> 2
+  currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
